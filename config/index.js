@@ -10,14 +10,22 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        target: 'http://192.168.1.20:3021', // 你请求的第三方接口
+        changeOrigin: true, // 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+        pathRewrite: {  // 路径重写，
+          //'^/api': ''  // 替换target中的请求地址，也就是说以后你在请求http://api.jisuapi.com/XXXXX这个地址的时候直接写成/api即可。
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 9998, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
-    notifyOnErrors: true,
+    notifyOnErrors: false,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
 
@@ -31,9 +39,9 @@ module.exports = {
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
-    cacheBusting: true,
+    cacheBusting: false,
 
-    cssSourceMap: true
+    cssSourceMap: false
   },
 
   build: {
@@ -49,7 +57,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
@@ -64,6 +72,8 @@ module.exports = {
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
-    bundleAnalyzerReport: process.env.npm_config_report || false
+    bundleAnalyzerReport: process.env.npm_config_report || false,
+    // `npm run build:prod --generate_report`
+    generateAnalyzerReport: process.env.npm_config_generate_report || false
   }
 }

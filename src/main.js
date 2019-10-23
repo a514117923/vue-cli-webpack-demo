@@ -3,8 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import permission from '@/permission' // extends
+import Extends from '@/utils/extend' // extends
+import 'babel-polyfill' // 兼容ie11
+
+// css
+import '@/style/index.scss'
 
 Vue.config.productionTip = false
+Vue.use(Extends)
 
 /* eslint-disable no-new */
 new Vue({

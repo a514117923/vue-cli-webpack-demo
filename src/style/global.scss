@@ -1,0 +1,26 @@
+.flex {
+  display: flex;
+}
+.flex-x-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-y-center {
+  display: flex;
+  align-items: center;
+}
+.flex-x-y-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inline-flex {
+  display: inline-flex;
+}
+
+.no-message {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 16px;
+  color: #999;
+}
